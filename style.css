@@ -23,7 +23,7 @@ main {
 ul {
     list-style-type: none;
     padding: 0;
-    text-align: center; /* Center the list items */
+    text-align: center;
 }
 
 /* Style the list items */
