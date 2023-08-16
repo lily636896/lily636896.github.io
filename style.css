@@ -48,10 +48,10 @@ a:hover {
 /* Set background image */
 body {
     background-image: url('https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_1280.png');
-    background-size: cover;
+    background-size: contain; /* Adjust this property to change image size */
     background-repeat: no-repeat;
+    background-position: center;
 }
-
 /* Style the footer */
 footer {
     text-align: center;
