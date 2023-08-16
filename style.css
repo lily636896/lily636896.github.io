@@ -22,6 +22,8 @@ main {
 /* Style the list */
 ul {
     list-style-type: none;
+    padding: 0;
+    text-align: center; /* Center the list items */
 }
 
 /* Style the list items */
