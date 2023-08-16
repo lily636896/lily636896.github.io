@@ -47,10 +47,11 @@ a:hover {
 
 /* Set background image */
 body {
-    background-image: url('https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_1280.png');
-    background-size: 20% auto; 
+    background-image: url('https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_1280.png'),
+                      url('https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_1280.png');
+    background-size: 30% auto;
     background-repeat: no-repeat;
-    background-position: right center; 
+    background-position: right center, left center;
 }
 
 /* Style the footer */
