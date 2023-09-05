@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2</title>
+</head>
+
+<body>
+
+    <form id="numberForm">
+        <input type="text" id="num1" placeholder="Input 1st number">
+        <input type="text" id="num2" placeholder="Input 2nd number">
+        <input type="text" id="num3" placeholder="Input 3rd number">
+        <p>
+        <button type="button" onclick="processData()">Process</button>
+        <button type="reset">Clear</button>
+        </p>
+    </form>
+
+    <p><textarea id="results" readonly></textarea></p>
+  
+    <p><a href="hw2.html">Back to Homework 2 main page</a></p>
+
+    <script>
+        function processData() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const num3 = parseFloat(document.getElementById('num3').value);
+
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                document.getElementById('results').value = "Please enter valid numbers only";
+                return;
+            }
+
+            const sum = num1 + num2 + num3;
+            const avg = sum / 3;
+            const prod = num1 * num2 * num3;
+            const minimum = Math.min(num1, num2, num3);
+            const maximum = Math.max(num1, num2, num3);
+
+            document.getElementById('results').value = 
+                "Sum: " + sum + "\n" +
+                "Average: " + avg + "\n" +
+                "Product: " + prod + "\n" +
+                "Smallest: " + minimum + "\n" +
+                "Largest: " + maximum;
+        }
+    </script>
+
+</body>
+
+</html>

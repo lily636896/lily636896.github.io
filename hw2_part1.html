@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1</title>
+</head>
+
+<body>
+
+    <div id="output"></div>
+
+    <p><a href="hw2.html">Back to Homework 2 main page</a></p>
+  
+    <script>
+        window.onload = function() {
+            const outputDiv = document.getElementById('output');
+
+            const xy = document.createElement('span');
+            xy.style.fontWeight = 'bold';
+            xy.style.fontFamily = 'Times New Roman';
+            xy.style.color = 'red';
+            xy.textContent = 'xy ';
+
+            const num12 = document.createElement('span');
+            num12.style.fontFamily = 'Arial';
+            num12.style.color = 'blue';
+            num12.textContent = '12 ';
+
+            const num89 = document.createElement('span');
+            num89.style.fontFamily = 'Impact';
+            num89.style.color = 'green';
+            num89.style.fontStyle = 'italic';
+            num89.textContent = '89';
+
+            outputDiv.appendChild(xy);
+            outputDiv.appendChild(num12);
+            outputDiv.appendChild(num89);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extra Credit</title>
+</head>
+
+<body>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Currency</th>
+        <th>Rate</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Euro</td>
+        <td>0.84</td>
+        <td><input type="text" readonly></td>
+      </tr>
+      <tr>
+        <td>Canadian Dollar</td>
+        <td>1.23</td>
+        <td><input type="text" readonly></td>
+      </tr>
+      <tr>
+        <td>Hong Kong Dollar</td>
+        <td>7.76</td>
+        <td><input type="text" readonly></td>
+      </tr>
+      <tr>
+        <td>Japanese Yen</td>
+        <td>110.80</td>
+        <td><input type="text" readonly></td>
+      </tr>
+      <tr>
+        <td>Mexican Peso</td>
+        <td>19.82</td>
+        <td><input type="text" readonly></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Enter Amount of U.S. Dollars: <input type="text" id="usdAmount" oninput="convertCurrency()"></p>
+
+  <a href="hw2.html">Back to Homework 2 main page</a>
+
+  <script>
+    function convertCurrency() {
+      const usdAmount = parseFloat(document.getElementById('usdAmount').value);
+      if (isNaN(usdAmount)) return;
+
+      const rates = [0.84, 1.23, 7.76, 110.80, 19.82];
+      const valueFields = document.querySelectorAll('td input[readonly]');
+
+      valueFields.forEach((field, i) => {
+        const convertedValue = (usdAmount * rates[i]).toFixed(2);
+        field.value = convertedValue;
+      });
+    }
+  </script>
+
+</body>
+
+</html>
