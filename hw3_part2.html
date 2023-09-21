@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework 3 - Functions (Part 2)</title>
+    <title>Homework 3 - Part 2</title>
     <style>
         table {
             width: 100%;
@@ -19,12 +19,15 @@
         input[type="text"], input[type="number"] {
             width: 100%;
         }
+        .right-align {
+            text-align: right;
+        }
     </style>
 </head>
 <body>
     <h1>Homework 3 - Part 2</h1>
     <form id="salesForm">
-        <label for="sellersName">Salesperson's Name:</label>
+        <label for="sellersName">Seller's Name:</label>
         <input type="text" id="sellersName" name="sellersName" required>
         <br>
         <table>
@@ -38,31 +41,31 @@
                 <td>Item 1</td>
                 <td>$20.99</td>
                 <td><input type="number" id="item1Qty" name="item1Qty" min="0"></td>
-                <td><input type="text" id="item1Total" readonly></td>
+                <td><input type="text" id="item1Total" class="right-align" readonly></td>
             </tr>
             <tr>
                 <td>Item 2</td>
                 <td>$12.75</td>
                 <td><input type="number" id="item2Qty" name="item2Qty" min="0"></td>
-                <td><input type="text" id="item2Total" readonly></td>
+                <td><input type="text" id="item2Total" class="right-align" readonly></td>
             </tr>
             <tr>
                 <td>Item 3</td>
                 <td>$9.95</td>
                 <td><input type="number" id="item3Qty" name="item3Qty" min="0"></td>
-                <td><input type="text" id="item3Total" readonly></td>
+                <td><input type="text" id="item3Total" class="right-align" readonly></td>
             </tr>
             <tr>
                 <td>Item 4</td>
                 <td>$35.89</td>
                 <td><input type="number" id="item4Qty" name="item4Qty" min="0"></td>
-                <td><input type="text" id="item4Total" readonly></td>
+                <td><input type="text" id="item4Total" class="right-align" readonly></td>
             </tr>
             <tr>
                 <td>Total Sales Amount:</td>
                 <td></td>
                 <td></td>
-                <td><input type="text" id="totalSalesAmount" readonly></td> 
+                <td><input type="text" id="totalSalesAmount" class="right-align" readonly></td>
             </tr>
         </table>
         <br>
@@ -70,7 +73,7 @@
         <button type="button" id="clearButton">Clear Form</button>
         <br>
         <label for="totalEarnings">Total Earnings:</label>
-        <input type="text" id="totalEarnings" readonly>
+        <input type="text" id="totalEarnings" class="right-align" readonly>
     </form>
 
     <p><a href="hw3.html">Back to Homework 3 main page</a></p>
@@ -89,20 +92,31 @@
             const item3Qty = parseInt(document.getElementById('item3Qty').value) || 0;
             const item4Qty = parseInt(document.getElementById('item4Qty').value) || 0;
 
-            const totalSales = (item1Qty * 20.99) + (item2Qty * 12.75) + (item3Qty * 9.95) + (item4Qty * 35.89);
+            const item1Price = 20.99;
+            const item2Price = 12.75;
+            const item3Price = 9.95;
+            const item4Price = 35.89;
+
+            const totalSales = (item1Qty * item1Price) + (item2Qty * item2Price) + (item3Qty * item3Price) + (item4Qty * item4Price);
             const totalEarnings = 250 + (0.09 * totalSales);
 
-            document.getElementById('item1Total').value = (item1Qty * 20.99).toFixed(2);
-            document.getElementById('item2Total').value = (item2Qty * 12.75).toFixed(2);
-            document.getElementById('item3Total').value = (item3Qty * 9.95).toFixed(2);
-            document.getElementById('item4Total').value = (item4Qty * 35.89).toFixed(2);
+            document.getElementById('item1Total').value = (item1Qty * item1Price).toFixed(2);
+            document.getElementById('item2Total').value = (item2Qty * item2Price).toFixed(2);
+            document.getElementById('item3Total').value = (item3Qty * item3Price).toFixed(2);
+            document.getElementById('item4Total').value = (item4Qty * item4Price).toFixed(2);
             document.getElementById('totalSalesAmount').value = totalSales.toFixed(2);
             document.getElementById('totalEarnings').value = totalEarnings.toFixed(2);
-
-            alert(`${salespersonName} earned $${totalEarnings.toFixed(2)}`);
         }
 
         function clearForm() {
             document.getElementById('salesForm').reset();
             document.getElementById('item1Total').value = '';
-            document.getElementById('item2Total
+            document.getElementById('item2Total').value = '';
+            document.getElementById('item3Total').value = '';
+            document.getElementById('item4Total').value = '';
+            document.getElementById('totalSalesAmount').value = '';
+            document.getElementById('totalEarnings').value = '';
+        }
+    </script>
+</body>
+</html>
