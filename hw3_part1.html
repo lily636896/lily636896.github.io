@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 3 - Functions (Part 1)</title>
+</head>
+<body>
+    <h1>Homework 3 Part 1 - Student Grades</h1>
+    <form id="gradeForm">
+        <label for="hwAvg">Homework Average:</label>
+        <input type="number" id="hwAvg" name="hwAvg" min="0" max="100" required>
+        <br>
+        <label for="midExam">Mid-Term Exam Score:</label>
+        <input type="number" id="midExam" name="midExam" min="0" max="100" required>
+        <br>
+        <label for="finalExam">Final Exam Score:</label>
+        <input type="number" id="finalExam" name="finalExam" min="0" max="100" required>
+        <br>
+        <label for="participation">Participation:</label>
+        <input type="number" id="participation" name="participation" min="0" max="100" required>
+        <br>
+        <button type="button" id="calculateButton">Calculate</button>
+        <button type="button" id="clearButton">Clear</button>
+    </form>
+    <div id="resultArea"></div>
+
+    <p><a href="hw3.html">Back to Homework 3 main page</a></p>
+  
+    <script>
+        const calculateButton = document.getElementById('calculateButton');
+        const clearButton = document.getElementById('clearButton');
+        const resultArea = document.getElementById('resultArea');
+
+        calculateButton.addEventListener('click', calculateGrade);
+        clearButton.addEventListener('click', clearForm);
+
+        function calculateGrade() {
+            const hwAvg = parseFloat(document.getElementById('hwAvg').value);
+            const midExam = parseFloat(document.getElementById('midExam').value);
+            const finalExam = parseFloat(document.getElementById('finalExam').value);
+            const participation = parseFloat(document.getElementById('participation').value);
+
+            if (isNaN(hwAvg) || isNaN(midExam) || isNaN(finalExam) || isNaN(participation)) {
+                resultArea.textContent = 'Please enter valid numeric grades.';
+                return;
+            }
+
+            if (hwAvg < 0 || hwAvg > 100 || midExam < 0 || midExam > 100 || finalExam < 0 || finalExam > 100 || participation < 0 || participation > 100) {
+                resultArea.textContent = 'Grades must be between 0 and 100.';
+                return;
+            }
+
+            const finalAverage = Math.round((0.5 * hwAvg + 0.2 * midExam + 0.2 * finalExam + 0.1 * participation));
+            let letterGrade = '';
+
+            if (finalAverage >= 90) {
+                letterGrade = 'A';
+            } else if (finalAverage >= 80) {
+                letterGrade = 'B';
+            } else if (finalAverage >= 70) {
+                letterGrade = 'C';
+            } else if (finalAverage >= 60) {
+                letterGrade = 'D';
+            } else {
+                letterGrade = 'F';
+            }
+
+            if (letterGrade === 'D' || letterGrade === 'F') {
+                resultArea.textContent = `Final Average: ${finalAverage} (Letter Grade: ${letterGrade})\nStudent must retake the course.`;
+            } else {
+                resultArea.textContent = `Final Average: ${finalAverage} (Letter Grade: ${letterGrade})`;
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('gradeForm').reset();
+            resultArea.textContent = '';
+        }
+    </script>
+</body>
+</html>

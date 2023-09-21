@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 3 - Functions (Part 2)</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Homework 3 - Part 2</h1>
+    <form id="salesForm">
+        <label for="sellersName">Salesperson's Name:</label>
+        <input type="text" id="sellersName" name="sellersName" required>
+        <br>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Unit Price</th>
+                <th>Qty Sold</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Item 1</td>
+                <td>$20.99</td>
+                <td><input type="number" id="item1Qty" name="item1Qty" min="0"></td>
+                <td><input type="text" id="item1Total" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 2</td>
+                <td>$12.75</td>
+                <td><input type="number" id="item2Qty" name="item2Qty" min="0"></td>
+                <td><input type="text" id="item2Total" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 3</td>
+                <td>$9.95</td>
+                <td><input type="number" id="item3Qty" name="item3Qty" min="0"></td>
+                <td><input type="text" id="item3Total" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 4</td>
+                <td>$35.89</td>
+                <td><input type="number" id="item4Qty" name="item4Qty" min="0"></td>
+                <td><input type="text" id="item4Total" readonly></td>
+            </tr>
+            <tr>
+                <td>Total Sales Amount:</td>
+                <td></td>
+                <td></td>
+                <td><input type="text" id="totalSalesAmount" readonly></td> 
+            </tr>
+        </table>
+        <br>
+        <button type="button" id="calculateButton">Calculate Earnings</button>
+        <button type="button" id="clearButton">Clear Form</button>
+        <br>
+        <label for="totalEarnings">Total Earnings:</label>
+        <input type="text" id="totalEarnings" readonly>
+    </form>
+
+    <p><a href="hw3.html">Back to Homework 3 main page</a></p>
+  
+    <script>
+        const calculateButton = document.getElementById('calculateButton');
+        const clearButton = document.getElementById('clearButton');
+
+        calculateButton.addEventListener('click', calculateEarnings);
+        clearButton.addEventListener('click', clearForm);
+
+        function calculateEarnings() {
+            const salespersonName = document.getElementById('sellersName').value;
+            const item1Qty = parseInt(document.getElementById('item1Qty').value) || 0;
+            const item2Qty = parseInt(document.getElementById('item2Qty').value) || 0;
+            const item3Qty = parseInt(document.getElementById('item3Qty').value) || 0;
+            const item4Qty = parseInt(document.getElementById('item4Qty').value) || 0;
+
+            const totalSales = (item1Qty * 20.99) + (item2Qty * 12.75) + (item3Qty * 9.95) + (item4Qty * 35.89);
+            const totalEarnings = 250 + (0.09 * totalSales);
+
+            document.getElementById('item1Total').value = (item1Qty * 20.99).toFixed(2);
+            document.getElementById('item2Total').value = (item2Qty * 12.75).toFixed(2);
+            document.getElementById('item3Total').value = (item3Qty * 9.95).toFixed(2);
+            document.getElementById('item4Total').value = (item4Qty * 35.89).toFixed(2);
+            document.getElementById('totalSalesAmount').value = totalSales.toFixed(2);
+            document.getElementById('totalEarnings').value = totalEarnings.toFixed(2);
+
+            alert(`${salespersonName} earned $${totalEarnings.toFixed(2)}`);
+        }
+
+        function clearForm() {
+            document.getElementById('salesForm').reset();
+            document.getElementById('item1Total').value = '';
+            document.getElementById('item2Total
