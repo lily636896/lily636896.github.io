@@ -7,6 +7,7 @@
     <style>
         #square {
             font-family: monospace;
+            white-space: pre-line; /* Preserve line breaks */
         }
     </style>
 </head>
@@ -45,8 +46,10 @@
                 let rowContent = '';
                 for (let col = 1; col <= size; col++) {
                     if (row === 1 || row === size || col === 1 || col === size) {
+                        // If it's on the outer boundary, add an asterisk
                         rowContent += '*';
                     } else {
+                        // If it's not on the outer boundary, add a space
                         rowContent += ' ';
                     }
                 }
