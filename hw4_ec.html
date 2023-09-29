@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollow Square Generator</title>
+    <style>
+        #square {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Extra Credit - Hollow Square Generator</h1>
+    <form>
+        <label for="sizeInput">Enter a number (2-10):</label>
+        <input type="number" id="sizeInput" min="2" max="10">
+        <button type="button" id="generateButton">Generate Square</button>
+        <button type="button" id="clearButton">Clear</button>
+    </form>
+    <div id="square"></div>
+
+    <p><a href="hw4.html">Back to Homework 4 main page</a></p>
+  
+    <script>
+        const generateButton = document.getElementById('generateButton');
+        const clearButton = document.getElementById('clearButton');
+        const sizeInput = document.getElementById('sizeInput');
+        const squareContainer = document.getElementById('square');
+
+        generateButton.addEventListener('click', generateSquare);
+        clearButton.addEventListener('click', clearSquare);
+
+        function generateSquare() {
+            const size = parseInt(sizeInput.value);
+
+            if (isNaN(size) || size < 2 || size > 10) {
+                squareContainer.textContent = 'Please enter a valid number between 2 and 10.';
+                return;
+            }
+
+            let square = '';
+
+            for (let row = 1; row <= size; row++) {
+                let rowContent = '';
+                for (let col = 1; col <= size; col++) {
+                    if (row === 1 || row === size || col === 1 || col === size) {
+                        rowContent += '*';
+                    } else {
+                        rowContent += ' ';
+                    }
+                }
+                square += rowContent + '\n';
+            }
+
+            squareContainer.textContent = square;
+        }
+
+        function clearSquare() {
+            sizeInput.value = '';
+            squareContainer.textContent = '';
+        }
+    </script>
+</body>
+</html>

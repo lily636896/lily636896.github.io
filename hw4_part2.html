@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compound Interest Calculation</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Part 2 - Calculate Compound Interest</h1>
+
+    <div id="results"></div>
+
+    <p><a href="hw4.html">Back to Homework 4 main page</a></p>
+  
+    <script>
+        // Part 2 JavaScript code here
+        const results = document.getElementById('results');
+        const principal = 1000;
+        const years = 5;
+        const interestRates = [0.05, 0.06, 0.07];
+
+        results.innerHTML = ''; // Clear any existing content
+
+        // Loop through interest rates
+        for (const rate of interestRates) {
+            const table = document.createElement('table');
+            const headerRow = table.insertRow(0);
+            const yearHeader = headerRow.insertCell(0);
+            const amountHeader = headerRow.insertCell(1);
+            const rateHeader = headerRow.insertCell(2);
+
+            yearHeader.textContent = 'Year';
+            amountHeader.textContent = 'Amount on deposit';
+            rateHeader.textContent = 'Interest Rate';
+
+            // Loop through years
+            for (let year = 1; year <= years; year++) {
+                const newRow = table.insertRow(-1);
+                const yearCell = newRow.insertCell(0);
+                const amountCell = newRow.insertCell(1);
+                const rateCell = newRow.insertCell(2);
+
+                const amount = principal * Math.pow(1 + rate, year);
+                yearCell.textContent = year;
+                amountCell.textContent = amount.toFixed(2);
+                rateCell.textContent = rate.toFixed(2);
+            }
+
+            results.appendChild(table);
+        }
+    </script>
+</body>
+</html>
+ 

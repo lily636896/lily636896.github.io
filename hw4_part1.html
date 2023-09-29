@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 4 - Part 1</title>
+</head>
+<body>
+    <h1>Part 1 - Calculate Products and Sums</h1>
+    <h2>Using For Loop</h2>
+    <p id="forResults"></p>
+
+    <h2>Using While Loop</h2>
+    <p id="whileResults"></p>
+
+    <p><a href="hw4.html">Back to Homework 4 main page</a></p>
+  
+    <script>
+        // Using For Loop
+        let forProduct = 1;
+        let forSum = 0;
+
+        for (let i = 5; i <= 25; i += 4) {
+            forProduct *= i;
+            forSum += i;
+        }
+
+        // Using While Loop
+        let whileProduct = 1;
+        let whileSum = 0;
+        let num = 3;
+
+        while (num <= 18) {
+            whileProduct *= num;
+            whileSum += num;
+            num += 3;
+        }
+
+        // Displaying results
+        document.getElementById('forResults').textContent = `
+            The result of 5 * 9 * 13 * 17 * 21 * 25 is ${forProduct.toLocaleString()}.
+            The result of 5 + 9 + 13 + 17 + 21 + 25 is ${forSum.toLocaleString()}.
+        `;
+
+        document.getElementById('whileResults').textContent = `
+            The result of 3 * 6 * 9 * 12 * 15 * 18 is ${whileProduct.toLocaleString()}.
+            The result of 3 + 6 + 9 + 12 + 15 + 18 is ${whileSum.toLocaleString()}.
+        `;
+    </script>
+</body>
+</html>
