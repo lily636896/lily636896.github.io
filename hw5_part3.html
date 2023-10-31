@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 5 - Part 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        input, button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Homework 5 - Part 3</h1>
+    
+    <div class="container">
+        <!-- Back to Main Page Link -->
+        <p><a href="homework5.html">Back to Homework 5 main page</a></p>
+        
+        <!-- State Search Form -->
+        <form id="stateForm">
+            <input type="text" id="stateInput" placeholder="Enter state name or abbreviation" required>
+            <button type="button" onclick="getStateInfo()">Get State Info</button>
+            <textarea id="output" readonly></textarea>
+        </form>
+    </div>
+
+    <script>
+        // Define the census data as a two-dimensional array
+        const censusData = [
+            ["AL", "Alabama", "Montgomery", "4,903,185"],
+            ["AK", "Alaska", "Juneau", "731,545"],
+            ["AZ", "Arizona", "Phoenix", "7,278,717"],
+            ["AR", "Arkansas", "Little Rock", "3,017,825"],
+            ["CA", "California", "Sacramento", "39,512,223"],
+            ["CO", "Colorado", "Denver", "5,758,736"],
+            ["CT", "Connecticut", "Hartford", "3,565,287"],
+            ["DE", "Delaware", "Dover", "973,764"],
+            ["FL", "Florida", "Tallahassee", "21,477,737"],
+            ["GA", "Georgia", "Atlanta", "10,617,423"],
+            ["HI", "Hawaii", "Honolulu", "1,415,872"],
+            ["ID", "Idaho", "Boise", "1,787,065"],
+            ["IL", "Illinois", "Springfield", "12,671,821"],
+            ["IN", "Indiana", "Indianapolis", "6,732,219"],
+            ["IA", "Iowa", "Des Moines", "3,155,070"],
+            ["KS", "Kansas", "Topeka", "2,913,314"],
+            ["KY", "Kentucky", "Frankfort", "4,467,673"],
+            ["LA", "Louisiana", "Baton Rouge", "4,648,794"],
+            ["ME", "Maine", "Augusta", "1,344,212"],
+            ["MD", "Maryland", "Annapolis", "6,045,680"],
+            ["MA", "Massachusetts", "Boston", "6,892,503"],
+            ["MI", "Michigan", "Lansing", "9,986,857"],
+            ["MN", "Minnesota", "St. Paul", "5,639,632"],
+            ["MS", "Mississippi", "Jackson", "2,976,149"],
+            ["MO", "Missouri", "Jefferson City", "6,137,428"],
+            ["MT", "Montana", "Helena", "1,068,778"],
+            ["NE", "Nebraska", "Lincoln", "1,934,408"],
+            ["NV", "Nevada", "Carson City", "3,080,156"],
+            ["NH", "New Hampshire", "Concord", "1,359,711"],
+            ["NJ", "New Jersey", "Trenton", "8,882,190"],
+            ["NM", "New Mexico", "Santa Fe", "2,096,829"],
+            ["NY", "New York", "Albany", "19,453,561"],
+            ["NC", "North Carolina", "Raleigh", "10,439,388"],
+            ["ND", "North Dakota", "Bismarck", "762,062"],
+            ["OH", "Ohio", "Columbus", "11,689,100"],
+            ["OK", "Oklahoma", "Oklahoma City", "3,956,971"],
+            ["OR", "Oregon", "Salem", "4,217,737"],
+            ["PA", "Pennsylvania", "Harrisburg", "12,801,989"],
+            ["RI", "Rhode Island", "Providence", "1,059,361"],
+            ["SC", "South Carolina", "Columbia", "5,148,714"],
+            ["SD", "South Dakota", "Pierre", "884,659"],
+            ["TN", "Tennessee", "Nashville", "6,829,174"],
+            ["TX", "Texas", "Austin", "29,145,505"],
+            ["UT", "Utah", "Salt Lake City", "3,205,958"],
+            ["VT", "Vermont", "Montpelier", "623,989"],
+            ["VA", "Virginia", "Richmond", "8,535,519"],
+            ["WA", "Washington", "Olympia", "7,614,893"],
+            ["WV", "West Virginia", "Charleston", "1,792,147"],
+            ["WI", "Wisconsin", "Madison", "5,822,434"],
+            ["WY", "Wyoming", "Cheyenne", "578,759"]
+        ];
+
+        // Function to validate and get state information
+        function getStateInfo() {
+            const stateInput = document.getElementById("stateInput").value.trim().toUpperCase();
+            const output = document.getElementById("output");
+            let stateFound = false;
+
+            if (!stateInput) {
+                output.value = "Please enter a state name or abbreviation.";
+                return;
+            }
+
+            for (let i = 0; i < censusData.length; i++) {
+                const stateAbbreviation = censusData[i][0].toUpperCase();
+                const stateName = censusData[i][1].toUpperCase();
+
+                if (stateInput === stateAbbreviation || stateInput === stateName) {
+                    const stateCapital = censusData[i][2];
+                    const statePopulation = censusData[i][3];
+
+                    output.value = `Thanks for your inquiry, here is the information you requested:
+State Abbr = ${stateAbbreviation}
+State Name = ${stateName}
+Capital = ${stateCapital}
+Population = ${statePopulation}`;
+                    
+                    stateFound = true;
+                    break;
+                }
+            }
+
+            if (!stateFound) {
+                output.value = "Sorry, we do not have information about this state!";
+            }
+        }
+    </script>
+</body>
+</html>

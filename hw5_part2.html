@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 5 - Part 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        select, button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Homework 5 - Part 2</h1>
+    <p><a href="hw5.html">Back to Homework 5 main page</a></p>
+
+    <!-- First Pulldown Menu (button click event) -->
+    <label for="firstPulldown">Select a Website:</label>
+    <select id="firstPulldown">
+      <option value="https://www.youtube.com/">Youtube</option>
+      <option value="https://www.yelp.com/">Yelp</option>
+      <option value="https://www.coursera.org/">Coursera</option>
+    </select>
+    <button type="button" onclick="openWebsite()">Open Website</button>
+
+    <!-- Second Pulldown Menu (onclick event) -->
+    <label for="secondPulldown">Select a Website:</label>
+    <select id="secondPulldown">
+      <option value="https://www.google.com/maps">Google Maps</option>
+      <option value="https://news.google.com/">Google News</option>
+      <option value="https://translate.google.com/">Google Translate</option>
+
+    </select>
+    <button type="button" onclick="openWebsiteOnClick()">Open Website</button>
+
+    <script>
+        // Function to open the selected website in a new tab (button click event)
+        function openWebsite() {
+            const firstPulldown = document.getElementById("firstPulldown");
+            const selectedValue = firstPulldown.value;
+            
+            // Open the selected website in a new tab
+            window.open(selectedValue, "_blank");
+        }
+
+        // Function to open the selected website in a new tab (onclick event)
+        function openWebsiteOnClick() {
+            const secondPulldown = document.getElementById("secondPulldown");
+            const selectedValue = secondPulldown.value;
+            
+            // Open the selected website in a new tab
+            window.open(selectedValue, "_blank");
+        }
+    </script>
+</body>
+</html>
