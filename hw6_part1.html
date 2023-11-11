@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 6 - Part 1: Numeric Calculations</title>
+</head>
+<body>
+    <h1>Homework 6 - Part 1: Numeric Calculations</h1>
+    <form id="numberForm">
+        <input type="text" id="numberInput" placeholder="Enter a number with 4 decimals">
+        <button type="button" onclick="processNumber()">Submit</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+    <div id="output"></div>
+    <a href="hw6.html">Back to Homework 6 Main Page</a>
+
+    <script>
+        function processNumber() {
+            var input = document.getElementById("numberInput").value;
+            var output = document.getElementById("output");
+
+            // Reset output
+            output.textContent = '';
+
+            // Validate input
+            if (!input || isNaN(input) || !hasFourDecimals(input)) {
+                output.textContent = "You need to type a number with at least 4 decimals, please try again";
+                return;
+            }
+
+            var number = parseFloat(input);
+            
+            // Calculations
+            var roundedInteger = Math.round(number);
+            var sqrtRounded = Math.round(Math.sqrt(number));
+            var roundedTenths = number.toFixed(1);
+            var roundedHundredths = number.toFixed(2);
+            var roundedThousandths = number.toFixed(3);
+
+            // Display results
+            output.innerHTML = "You typed number " + number + "<br>" +
+                "Rounded to the nearest integer = " + roundedInteger + "<br>" +
+                "Square root rounded to integer = " + sqrtRounded + "<br>" +
+                "Rounded to the nearest 10th position = " + roundedTenths + "<br>" +
+                "Rounded to the nearest 100th position = " + roundedHundredths + "<br>" +
+                "Rounded to the nearest 1000th position = " + roundedThousandths;
+        }
+
+        function clearForm() {
+            document.getElementById("numberInput").value = '';
+            document.getElementById("output").textContent = '';
+        }
+
+        function hasFourDecimals(value) {
+            var decimalPart = value.split('.')[1];
+            return decimalPart && decimalPart.length >= 4;
+        }
+    </script>
+</body>
+</html>
