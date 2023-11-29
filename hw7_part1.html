@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 7 - Part 1: Dynamic Styles</title>
+    <style>
+        /* Default styles for the content area */
+        #content {
+            background-color: white;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Homework 7 - Part 1: Dynamic Styles</h1>
+    <div id="content">
+        <p>This is a sample paragraph.</p>
+        <p>Try applying different styles:</p>
+        <form>
+            <label for="bgColor">Background Color:</label><br>
+            <input type="radio" name="bgColor" id="bgRed" value="red"> Red<br>
+            <input type="radio" name="bgColor" id="bgBlue" value="blue"> Blue<br><br>
+
+            <label>Text Styles:</label><br>
+            <input type="checkbox" id="underline" value="underline"> Underline<br>
+            <input type="checkbox" id="bold" value="bold"> Bold<br>
+            <input type="checkbox" id="italic" value="italic"> Italic<br><br>
+
+            <label for="fontSize">Font Size:</label><br>
+            <select id="fontSize">
+                <option value="16px">16px</option>
+                <option value="18px">18px</option>
+                <option value="20px">20px</option>
+            </select>
+        </form>
+    </div>
+
+    <a href="hw7.html">Back to Homework 7 Main Page</a>
+
+    <script>
+        // Function to update styles based on user input
+        function updateStyles() {
+            const content = document.getElementById("content");
+            const bgColor = document.querySelector('input[name="bgColor"]:checked');
+            const underline = document.getElementById("underline").checked ? "underline" : "none";
+            const bold = document.getElementById("bold").checked ? "bold" : "normal";
+            const italic = document.getElementById("italic").checked ? "italic" : "normal";
+            const fontSize = document.getElementById("fontSize").value;
+
+            content.style.backgroundColor = bgColor ? bgColor.value : "white";
+            content.style.textDecoration = underline;
+            content.style.fontWeight = bold;
+            content.style.fontStyle = italic;
+            content.style.fontSize = fontSize;
+        }
+
+        // Add event listeners to update styles on input change
+        const inputs = document.querySelectorAll("input[type='radio'], input[type='checkbox'], select");
+        inputs.forEach(input => {
+            input.addEventListener("change", updateStyles);
+        });
+    </script>
+</body>
+</html>
