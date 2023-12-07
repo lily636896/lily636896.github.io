@@ -1,18 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="CIS 114 Homework Assignment">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>CIS 114 Homework Assignment 8</title>
+    <title>Homework 8 - AJAX Application</title>
 </head>
+
 <body>
-    <header>
-        <h1>Coming Soon!</h1>
-    </header>
-    <nav>
-        <a href="index.html">Back to Homework 1</a>
-    </nav>
+    <h1>Homework 8 - AJAX Application</h1>
+    <a href="index.html">Back to Homework 1</a>
+    <br><br>
+    <button type="button" onclick="loadDoc()">Get CD collection</button>
+    <br><br>
+    <table id="demo"></table>
+
+    <script>
+        function loadDoc() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                myFunction(this);
+            };
+            xhttp.open("GET", "cd_catalog.xml");
+            xhttp.send();
+        }
+
+        function myFunction(xml) {
+            const xmlDoc = xml.responseXML;
+            const x = xmlDoc.getElementsByTagName("CD");
+            let table = "<tr><th>Artist</th><th>Title</th></tr>";
+            for (let i = 0; i < x.length; i++) {
+                table += "<tr><td>" +
+                    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+                    "</td><td>" +
+                    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+                    "</td></tr>";
+            }
+            document.getElementById("demo").innerHTML = table;
+        }
+    </script>
+
+    <h2>Explanation of AJAX</h2>
+    <p>
+        AJAX (Asynchronous JavaScript and XML) is a technique used to create dynamic and interactive web applications.
+        In this script, when you click the "Get CD collection" button, an AJAX request is made to retrieve an XML file containing CD data.
+        The XMLHttpRequest object is used to send the request, and when the response is received, the data is processed and displayed in a table.
+        This allows for fetching data from a server without requiring a full page reload.
+    </p>
+
+    <h2>REST API - Spotify Web</h2>
+    <p>
+        <strong>API of my choice:</strong> Spotify Web
+    </p>
+    <p>
+        <strong>API introduction:</strong> Spotify Web API enables the creation of applications that can interact with Spotify's streaming service, such as retrieving content metadata, getting recommendations, creating and managing playlists, or controlling playback.
+    </p>
+    <p>
+        <strong>Getting started:</strong> To get started with Spotify Web API, you need to log into the dashboard using your Spotify account, create an app, and select "Web API" as the API type. You will obtain app credentials required for API authorization to obtain an access token.
+    </p>
+    <p>
+        <strong>Documentation:</strong> The documentation is organized into concepts, tutorials, how-tos, and reference sections. It covers topics like retrieving data from artists and albums, searching for Spotify content, controlling playback, managing playlists, getting recommendations, and more. You can find a complete list of available endpoints in the API Reference.
+    </p>
+    <p>
+        <strong>Examples:</strong> There are step-by-step how-tos provided to guide you through creating a web app to display your Spotify profile data.
+    </p>
+    <p>
+        <strong>Support:</strong> If you have questions or run into issues while using the Spotify Web API, you can find help in the Spotify Developer Community, where you can connect with other developers.
+    </p>
+    <p>
+        <strong>Legal:</strong> By using Spotify Web API, you accept the Spotify Developer Terms of Service.
+    </p>
 </body>
+
 </html>
